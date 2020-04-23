@@ -1,0 +1,12 @@
+create database LaboratorySIU4;
+use LaboratorySIU4;
+create table facultad4
+(
+	ID  int (20) auto_increment primary key,
+    Codigo_Facultad varchar (5) ,
+	nombreFacultad varchar (45),
+    Estado_Facultad varchar (1)
+    )ENGINE=InnoDB;
+    
+use LaboratorySIU4;
+select * from facultad4;

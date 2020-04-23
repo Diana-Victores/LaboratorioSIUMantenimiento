@@ -47,6 +47,7 @@ public class MantenimientoFacultad extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         Label_status = new javax.swing.JLabel();
+        label_status = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -92,7 +93,7 @@ public class MantenimientoFacultad extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 171, -1, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 171, 90, -1));
 
         jButton4.setText("BUSCAR");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +104,9 @@ public class MantenimientoFacultad extends javax.swing.JFrame {
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 269, -1, -1));
         getContentPane().add(Label_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 261, -1, -1));
 
+        label_status.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        getContentPane().add(label_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -110,10 +114,10 @@ public class MantenimientoFacultad extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conectar = DriverManager.getConnection("jdbc:mysql://localhost/laboratorysFM1","root","");
+            Connection conectar = DriverManager.getConnection("jdbc:mysql://localhost/LaboratorySIU4","root","");
 
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/laboratorysFM1","root","");
-            java.sql.PreparedStatement pst = cn.prepareStatement("insert into registroclientes values(?,?,?,?,?,?,?)");
+            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/LaboratorySIU4","root","");
+            java.sql.PreparedStatement pst = cn.prepareStatement("insert into facultad4 values(?,?,?,?)");
 
             pst.setString(1, "0");
             pst.setString(2, txtcodigo.getText().trim());
@@ -129,7 +133,7 @@ public class MantenimientoFacultad extends javax.swing.JFrame {
             txtestado.setText(""); 
             
 
-            Label_status.setText("Registro exitoso");
+            label_status.setText("Registro exitoso");
 
         } catch (Exception e) {
 
@@ -142,8 +146,8 @@ public class MantenimientoFacultad extends javax.swing.JFrame {
         try {
             String ID = txtid.getText().trim();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/laboratorysFM1", "root", "");
-            PreparedStatement pst = cn.prepareStatement("update registroclientes set Codigo_Facultad=?, nombreFacultad=?, Estado_Facultad=?  where ID = " + ID);
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LaboratorySIU4", "root", "");
+            PreparedStatement pst = cn.prepareStatement("update facultad4 set Codigo_Facultad=?, nombreFacultad=?, Estado_Facultad=? where ID = " + ID);
 
             
             pst.setString(1, txtcodigo.getText().trim());
@@ -152,7 +156,7 @@ public class MantenimientoFacultad extends javax.swing.JFrame {
            
             pst.executeUpdate();
 
-            Label_status.setText("Modificación exitosa.");
+            label_status.setText("Modificación exitosa.");
 
         } catch (Exception e) {
         }
@@ -165,18 +169,19 @@ public class MantenimientoFacultad extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
          try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/laboratorysFM1", "root", "");
-            PreparedStatement pst = cn.prepareStatement("delete from registroclientes where ID = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LaboratorySIU4", "root", "");
+            PreparedStatement pst = cn.prepareStatement("delete from facultad4 where ID = ?");
 
             pst.setString(1, txtid.getText().trim());
             pst.executeUpdate();
+            
             txtcodigo.setText("");
             txtnombrefacultad.setText("");
             txtestado.setText("");
             
             
 
-            Label_status.setText("Registro eliminado.");
+            label_status.setText("Registro eliminado.");
 
         } catch (Exception e) {
         }
@@ -185,8 +190,8 @@ public class MantenimientoFacultad extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/laboratorysFM1", "root", "");
-            PreparedStatement pst = cn.prepareStatement("select * from registroclientes where ID = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LaboratorySIU4", "root", "");
+            PreparedStatement pst = cn.prepareStatement("select * from facultad4 where ID = ?");
             pst.setString(1, txtid.getText().trim());
 
             ResultSet rs = pst.executeQuery();
@@ -254,6 +259,7 @@ public class MantenimientoFacultad extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel label_status;
     private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextField txtestado;
     private javax.swing.JTextField txtid;
